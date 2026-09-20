@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-family: "Bricolage Grotesque", Georgia, serif;
+  color-scheme: dark;
+  background: #0b0f0e;
+  color: #eef1ec;
+  --ink: #eef1ec;
+  --muted: #84908a;
+  --line: rgb(231 245 228 / 10%);
+  --panel: #141a18;
+  --lime: #d5f477;
+  --teal: #62d4c9;
+  --ember: #ff9b70;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #0b0f0e;
+  background-image: linear-gradient(rgb(213 244 119 / 0.025) 1px, transparent 1px), linear-gradient(90deg, rgb(213 244 119 / 0.025) 1px, transparent 1px), radial-gradient(circle at 82% -10%, rgb(63 119 92 / 0.25), transparent 32rem);
+  background-size: 42px 42px, 42px 42px, auto;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+button, a, select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a { transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease; }
+
+h1, h2, h3, p { text-wrap: balance; }
+
+h1 { letter-spacing: -0.055em; }
+
+main > * { animation: rise-in 500ms both; }
+main > *:nth-child(2) { animation-delay: 70ms; }
+main > *:nth-child(3) { animation-delay: 140ms; }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.font-mono, th, .field-label, .text-\[10px\] { font-family: "IBM Plex Mono", monospace; }
+
+article { box-shadow: 0 18px 48px rgb(0 0 0 / 0.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.field-label {
+  display: grid;
+  gap: 0.5rem;
+  color: #aeb7b1;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 0.75rem;
+  background: #101212;
+  padding: 0.75rem 0.875rem;
+  color: #f0f3ee;
+  outline: none;
+}
+
+.field-input:focus {
+  border-color: rgb(201 243 106 / 60%);
+}
+
+.expense-row { animation: row-in 420ms both; }
+
+@keyframes row-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+option {
+  background: #151818;
+}
