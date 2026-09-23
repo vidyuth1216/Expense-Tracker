@@ -7,7 +7,7 @@ import type { Expense, ExpenseCategory, ExpenseInput } from '../types/finance'
 
 const categories: ExpenseCategory[] = ['Housing', 'Food', 'Transport', 'Shopping', 'Health', 'Entertainment']
 
-export function Expenses({ expenses, onUpdate, onDelete }: { expenses: Expense[]; onUpdate: (id: string, expense: ExpenseInput) => void; onDelete: (id: string) => void }) {
+export function Expenses({ expenses, loading, onUpdate, onDelete }: { expenses: Expense[]; loading: boolean; onUpdate: (id: string, expense: ExpenseInput) => Promise<void>; onDelete: (id: string) => Promise<void> }) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All categories')
   const [month, setMonth] = useState('All months')

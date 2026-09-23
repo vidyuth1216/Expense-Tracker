@@ -3,7 +3,7 @@ import { formatINR, type Income, type IncomeInput } from '../types/finance'
 import { IncomeForm } from './IncomeForm'
 import { Icon } from './Icon'
 
-export function IncomeTable({ incomes, onUpdate, onDelete }: { incomes: Income[]; onUpdate: (id: string, income: IncomeInput) => void; onDelete: (id: string) => void }) {
+export function IncomeTable({ incomes, onUpdate, onDelete }: { incomes: Income[]; onUpdate: (id: string, income: IncomeInput) => Promise<void>; onDelete: (id: string) => Promise<void> }) {
   const [editing, setEditing] = useState<Income | null>(null)
   const sortedIncomes = [...incomes].sort((a, b) => b.date.localeCompare(a.date))
   if (!sortedIncomes.length) return <div className="px-5 py-16 text-center"><p className="text-lg font-semibold text-white">No income recorded</p><p className="mt-2 text-sm text-[#78837d]">Add your first income entry to start tracking your balance.</p></div>

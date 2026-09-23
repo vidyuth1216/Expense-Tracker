@@ -5,9 +5,9 @@ import { MonthPicker, PageHeader, UserProfile } from '../components/PageHeader'
 import { StatCard } from '../components/StatCard'
 import { formatINR, type Expense, type Income } from '../types/finance'
 
-type DashboardProps = { expenses: Expense[]; incomes: Income[] }
+type DashboardProps = { expenses: Expense[]; incomes: Income[]; loading: boolean }
 
-export function Dashboard({ expenses: currentExpenses, incomes }: DashboardProps) {
+export function Dashboard({ expenses: currentExpenses, incomes, loading }: DashboardProps) {
   const totalIncome = incomes.reduce((total, income) => total + income.amount, 0)
   const totalExpenses = currentExpenses.reduce((total, expense) => total + expense.amount, 0)
   const remainingBalance = totalIncome - totalExpenses

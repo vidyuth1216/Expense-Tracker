@@ -1,14 +1,21 @@
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
 import express from 'express'
+import { env } from './config/env.js'
+import { errorHandler } from './middleware/errorHandler.js'
+import { notFoundHandler } from './middleware/notFound.js'
+import { apiRouter } from './routes/index.js'
 
-const app = express()
-const port = Number(process.env.PORT ?? 3000)
+export const app = express()
 
+app.use(cors({ origin: env.corsOrigin, credentials: true }))
 app.use(express.json())
+app.use(cookieParser())
+app.use('/api', apiRouter)
 
-app.get('/health', (_request, response) => {
-  response.json({ status: 'ok' })
-})
+app.use(notFoundHandler)
+app.use(errorHandler)
 
-app.listen(port, () => {
-  console.log(`Backend listening on http://localhost:${port}`)
+app.listen(env.port, () => {
+  console.log(`Backend listening on http://localhost:${env.port}`)
 })
