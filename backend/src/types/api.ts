@@ -68,3 +68,12 @@ export type DashboardResponse = {
   recentExpenses: DashboardRecentExpense[]
   monthlySpending: DashboardMonthlySpending[]
 }
+
+export type CategoryInput = {
+  name: string
+}
+
+export type CategoryResponse = {
+  id: string
+  name: string
+}

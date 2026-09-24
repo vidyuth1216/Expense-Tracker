@@ -1,4 +1,4 @@
-export type ExpenseCategory = 'Housing' | 'Food' | 'Transport' | 'Shopping' | 'Health' | 'Entertainment' | 'Other'
+export type ExpenseCategory = string
 
 export type CategoryOption = {
   id: string

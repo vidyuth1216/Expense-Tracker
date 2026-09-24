@@ -7,6 +7,7 @@ import type { AuthUser, LoginInput, RegisterInput } from '../types/api.js'
 import { AppError } from '../types/errors.js'
 
 const BCRYPT_ROUNDS = 12
+const DEFAULT_CATEGORIES = ['Housing', 'Food', 'Transport', 'Shopping', 'Other']
 
 function toAuthUser(user: { id: string; name: string; email: string; currency: string }): AuthUser {
   return { id: user.id, name: user.name, email: user.email, currency: user.currency }
@@ -30,9 +31,17 @@ export const authService = {
   async register(input: RegisterInput): Promise<AuthUser> {
     const passwordHash = await bcrypt.hash(input.password, BCRYPT_ROUNDS)
     try {
-      const user = await prisma.user.create({
-        data: { name: input.name, email: input.email, passwordHash },
-        select: { id: true, name: true, email: true, currency: true },
+      const user = await prisma.$transaction(async (transaction) => {
+        const createdUser = await transaction.user.create({
+          data: { name: input.name, email: input.email, passwordHash },
+          select: { id: true, name: true, email: true, currency: true },
+        })
+
+        await transaction.category.createMany({
+          data: DEFAULT_CATEGORIES.map((name) => ({ name, userId: createdUser.id })),
+        })
+
+        return createdUser
       })
       return toAuthUser(user)
     } catch (error) {

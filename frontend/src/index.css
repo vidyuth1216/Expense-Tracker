@@ -18,6 +18,7 @@
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background-color: #0b0f0e;
   background-image: linear-gradient(rgb(213 244 119 / 0.025) 1px, transparent 1px), linear-gradient(90deg, rgb(213 244 119 / 0.025) 1px, transparent 1px), radial-gradient(circle at 82% -10%, rgb(63 119 92 / 0.25), transparent 32rem);
   background-size: 42px 42px, 42px 42px, auto;
@@ -63,6 +64,8 @@ article { box-shadow: 0 18px 48px rgb(0 0 0 / 0.12); }
 }
 
 .field-input {
+  box-sizing: border-box;
+  min-height: 2.75rem;
   width: 100%;
   border: 1px solid rgb(255 255 255 / 10%);
   border-radius: 0.75rem;
@@ -70,6 +73,7 @@ article { box-shadow: 0 18px 48px rgb(0 0 0 / 0.12); }
   padding: 0.75rem 0.875rem;
   color: #f0f3ee;
   outline: none;
+  font-size: 1rem;
 }
 
 .field-input:focus {
@@ -85,4 +89,19 @@ article { box-shadow: 0 18px 48px rgb(0 0 0 / 0.12); }
 
 option {
   background: #151818;
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-color: rgb(213 244 119 / 35%) transparent;
+  scrollbar-width: thin;
+}
+
+.overflow-x-auto {
+  max-width: 100%;
+  overscroll-behavior-x: contain;
+  scrollbar-color: rgb(213 244 119 / 35%) transparent;
+  scrollbar-width: thin;
 }

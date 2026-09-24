@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Icon } from './Icon'
+import { useAuth } from '../context/AuthContext'
 
 const links = [
   { to: '/', label: 'Overview', icon: 'grid' as const },
@@ -8,6 +9,7 @@ const links = [
 ]
 
 export function Sidebar() {
+  const { user, logout } = useAuth()
   return (
     <aside className="hidden w-64 shrink-0 border-r border-white/8 bg-[#0d1311]/80 px-5 py-7 backdrop-blur-xl lg:block">
       <div className="flex items-center gap-3 px-3">
@@ -29,8 +31,9 @@ export function Sidebar() {
           Settings
         </NavLink>
         <div className="mt-5 flex items-center gap-3 border-t border-white/8 px-3 pt-5">
-          <div className="grid h-9 w-9 place-items-center rounded-full bg-[#4ecdc4] text-sm font-bold text-[#102222]">JD</div>
-          <div><p className="text-sm font-medium">Jordan Davis</p><p className="text-xs text-[#707876]">Personal account</p></div>
+          <div className="grid h-9 w-9 place-items-center rounded-full bg-[#4ecdc4] text-sm font-bold text-[#102222]">{user?.name.slice(0, 2).toUpperCase()}</div>
+          <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{user?.name}</p><p className="truncate text-xs text-[#707876]">{user?.email}</p></div>
+          <button aria-label="Sign out" className="text-xs text-[#84908a] hover:text-white" onClick={() => void logout()} type="button">Exit</button>
         </div>
       </div>
     </aside>

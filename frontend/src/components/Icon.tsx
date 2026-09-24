@@ -1,4 +1,4 @@
-type IconName = 'grid' | 'receipt' | 'plus' | 'wallet' | 'settings' | 'search' | 'chevron' | 'edit' | 'trash' | 'arrowUp' | 'arrowDown' | 'menu'
+type IconName = 'grid' | 'receipt' | 'plus' | 'wallet' | 'settings' | 'search' | 'chevron' | 'edit' | 'trash' | 'arrowUp' | 'arrowDown' | 'menu' | 'close'
 
 type IconProps = { name: IconName; size?: number }
 
@@ -15,6 +15,7 @@ const paths: Record<IconName, string> = {
   arrowUp: 'm5 15 7-7 7 7',
   arrowDown: 'm5 9 7 7 7-7',
   menu: 'M4 7h16M4 12h16M4 17h16',
+  close: 'M6 6l12 12M18 6 6 18',
 }
 
 export function Icon({ name, size = 18 }: IconProps) {
