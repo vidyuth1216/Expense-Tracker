@@ -24,6 +24,12 @@ export type IncomeInput = {
   description?: string | null
 }
 
+export type IncomeResponse = IncomeInput & {
+  id: string
+  createdAt: string
+  updatedAt: string
+}
+
 export type RegisterInput = {
   name: string
   email: string
@@ -60,13 +66,13 @@ export type DashboardMonthlySpending = {
 
 export type DashboardResponse = {
   month: string
-  income: number
-  expenses: number
-  remaining: number
+  totalIncome: number
+  totalExpenses: number
+  remainingBalance: number
   savingsRate: number
-  expenseByCategory: DashboardExpenseCategory[]
+  expenseBreakdown: DashboardExpenseCategory[]
   recentExpenses: DashboardRecentExpense[]
-  monthlySpending: DashboardMonthlySpending[]
+  sixMonthHistory: DashboardMonthlySpending[]
 }
 
 export type CategoryInput = {
@@ -76,4 +82,21 @@ export type CategoryInput = {
 export type CategoryResponse = {
   id: string
   name: string
+}
+
+export type BudgetInput = {
+  amount: number
+  categoryId: string
+  month: string
+}
+
+export type BudgetResponse = BudgetInput & {
+  id: string
+  category: string
+  spent: number
+  remaining: number
+  progressPercentage: number
+  isOverBudget: boolean
+  createdAt: string
+  updatedAt: string
 }

@@ -3,7 +3,14 @@ import { formatINR, type Expense, type ExpenseInput } from '../types/finance'
 import { ExpenseForm } from './ExpenseForm'
 import { Icon } from './Icon'
 
-const categoryColors: Record<string, string> = { Housing: 'bg-[#293d25] text-[#b8eb8b]', Food: 'bg-[#243d3c] text-[#83ddd5]', Transport: 'bg-[#453726] text-[#ffc88b]', Shopping: 'bg-[#452c35] text-[#ff9dad]', Entertainment: 'bg-[#302d4c] text-[#b3aff2]', Health: 'bg-[#3a3020] text-[#f8d38d]' }
+const categoryColorPalette = ['bg-[#293d25] text-[#b8eb8b]', 'bg-[#243d3c] text-[#83ddd5]', 'bg-[#453726] text-[#ffc88b]', 'bg-[#452c35] text-[#ff9dad]', 'bg-[#302d4c] text-[#b3aff2]', 'bg-[#3a3020] text-[#f8d38d]']
+
+function categoryColor(category: string): string {
+  const hash = [...category].reduce((total, character) => total + character.charCodeAt(0), 0)
+  return categoryColorPalette[hash % categoryColorPalette.length]
+}
+
+const categoryColors: Record<string, string> = new Proxy({}, { get: (_target, category: string) => categoryColor(category) })
 
 type ExpenseTableProps = { expenses: Expense[]; compact?: boolean; emptyTitle?: string; onUpdate?: (id: string, expense: ExpenseInput) => Promise<void>; onDelete?: (id: string) => Promise<void> }
 const formatDate = (date: string) => new Date(`${date}T12:00:00`).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })

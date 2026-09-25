@@ -6,6 +6,7 @@ const links = [
   { to: '/', label: 'Overview', icon: 'grid' as const },
   { to: '/expenses', label: 'Expenses', icon: 'receipt' as const },
   { to: '/income', label: 'Income', icon: 'wallet' as const },
+  { to: '/budgets', label: 'Budgets', icon: 'chart' as const },
 ]
 
 export function Sidebar() {

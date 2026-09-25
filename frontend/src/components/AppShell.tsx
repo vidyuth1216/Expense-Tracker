@@ -5,7 +5,7 @@ import { Sidebar } from './Sidebar'
 
 export function AppShell() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
-  const mobileLinks = [['/', 'grid', 'Overview'], ['/expenses', 'receipt', 'Expenses'], ['/income', 'wallet', 'Income'], ['/settings', 'settings', 'Settings']] as const
+  const mobileLinks = [['/', 'grid', 'Overview'], ['/expenses', 'receipt', 'Expenses'], ['/income', 'wallet', 'Income'], ['/budgets', 'chart', 'Budgets'], ['/settings', 'settings', 'Settings']] as const
 
   return <div className="min-h-screen overflow-x-hidden text-[#eef1ec] lg:flex">
     <Sidebar />
@@ -22,7 +22,7 @@ export function AppShell() {
         <NavLink className={({ isActive }) => `flex flex-col items-center gap-1 py-1 text-[10px] ${isActive ? 'text-[#c9f36a]' : 'text-[#818a85]'}`} end to="/"><Icon name="grid" size={18} />Overview</NavLink>
         <NavLink className={({ isActive }) => `flex flex-col items-center gap-1 py-1 text-[10px] ${isActive ? 'text-[#c9f36a]' : 'text-[#818a85]'}`} to="/expenses"><Icon name="receipt" size={18} />Expenses</NavLink>
         <NavLink aria-label="Add expense" className="mx-auto grid h-11 w-11 -translate-y-3 place-items-center rounded-full bg-[#d5f477] text-[#151814] shadow-[0_8px_24px_rgba(213,244,119,0.2)]" to="/expenses/new"><Icon name="plus" size={20} /></NavLink>
-        <NavLink className={({ isActive }) => `flex flex-col items-center gap-1 py-1 text-[10px] ${isActive ? 'text-[#c9f36a]' : 'text-[#818a85]'}`} to="/income"><Icon name="wallet" size={18} />Income</NavLink>
+        <NavLink className={({ isActive }) => `flex flex-col items-center gap-1 py-1 text-[10px] ${isActive ? 'text-[#c9f36a]' : 'text-[#818a85]'}`} to="/budgets"><Icon name="chart" size={18} />Budgets</NavLink>
         <NavLink className={({ isActive }) => `flex flex-col items-center gap-1 py-1 text-[10px] ${isActive ? 'text-[#c9f36a]' : 'text-[#818a85]'}`} to="/settings"><Icon name="settings" size={18} />Settings</NavLink>
       </nav>
     </div>

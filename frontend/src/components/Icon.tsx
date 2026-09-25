@@ -1,4 +1,4 @@
-type IconName = 'grid' | 'receipt' | 'plus' | 'wallet' | 'settings' | 'search' | 'chevron' | 'edit' | 'trash' | 'arrowUp' | 'arrowDown' | 'menu' | 'close'
+type IconName = 'grid' | 'receipt' | 'plus' | 'wallet' | 'chart' | 'settings' | 'search' | 'chevron' | 'edit' | 'trash' | 'arrowUp' | 'arrowDown' | 'menu' | 'close'
 
 type IconProps = { name: IconName; size?: number }
 
@@ -7,6 +7,7 @@ const paths: Record<IconName, string> = {
   receipt: 'M5 3h14v18l-3-2-4 2-4-2-3 2V3zm4 5h6m-6 4h6m-6 4h3',
   plus: 'M12 5v14M5 12h14',
   wallet: 'M4 7h16v12H4zM4 7l2-3h12l2 3m-4 6h4',
+  chart: 'M5 20V10m7 10V4m7 16v-7',
   settings: 'M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm0-5v2m0 13v2m7.4-9.5-1.7 1m-11.4 7-1.7 1m0-9 1.7 1m11.4 7 1.7 1M4.6 12H2m20 0h-2.6',
   search: 'm20 20-4.5-4.5m2-5.5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0z',
   chevron: 'm7 10 5 5 5-5',

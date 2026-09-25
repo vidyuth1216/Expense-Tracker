@@ -147,11 +147,29 @@ Response (`200`): `{ "data": { "id": "22222222-2222-4222-8222-222222222222", "de
 
 Missing expenses return `404`, invalid input and category IDs return `400`, and unexpected database failures return `500` without exposing database details.
 
+## Budget API
+
+All budget endpoints require the authentication cookie. Request bodies for `POST` and `PUT` contain `amount`, `categoryId`, and `month` (`YYYY-MM`). A user can have one budget per category and month.
+
+### `GET /api/budgets`
+
+Returns all budgets, newest month first. Pass `?month=YYYY-MM` to limit the response to one month.
+
+### `POST /api/budgets`
+
+Request body: `{ "amount": 8000, "categoryId": "33333333-3333-4333-8333-333333333333", "month": "2026-09" }`
+
+### `GET /api/budgets/:id`, `PUT /api/budgets/:id`, and `DELETE /api/budgets/:id`
+
+These follow the same success envelope as expenses. Budget responses include `category`, `spent`, `remaining`, `progressPercentage`, and `isOverBudget`; these values are calculated from matching expense rows for the budget month and category.
+
+Duplicate category/month budgets return `409`, missing budgets return `404`, and invalid input or category IDs return `400`.
+
 ## Dashboard API
 
-### `GET /api/dashboard?month=YYYY-MM`
+### `GET /api/dashboard?month=9&year=2026`
 
-Requires the authentication cookie. The requested month is required and must be a valid calendar month in `YYYY-MM` format. All totals are calculated from `Income` and `Expense` transaction rows; no calculated values are stored.
+Requires the authentication cookie. `month` must be `1` through `12` and `year` must be four digits. Income, expenses, savings rate, and category breakdown are scoped to the requested month. `remainingBalance` is global: all income ever recorded minus all expenses ever recorded.
 
 Response (`200`):
 
@@ -159,11 +177,11 @@ Response (`200`):
 {
 	"data": {
 		"month": "2026-09",
-		"income": 2500,
-		"expenses": 725.5,
-		"remaining": 1774.5,
+		"totalIncome": 2500,
+		"totalExpenses": 725.5,
+		"remainingBalance": 1774.5,
 		"savingsRate": 70.98,
-		"expenseByCategory": [
+		"expenseBreakdown": [
 			{
 				"categoryId": "33333333-3333-4333-8333-333333333333",
 				"category": "Food",
@@ -184,7 +202,7 @@ Response (`200`):
 				"updatedAt": "2026-09-23T10:00:00.000Z"
 			}
 		],
-		"monthlySpending": [
+		"sixMonthHistory": [
 			{ "month": "2026-05", "amount": 610 },
 			{ "month": "2026-06", "amount": 540 },
 			{ "month": "2026-07", "amount": 820 },
@@ -195,7 +213,7 @@ Response (`200`):
 }
 ```
 
-`income`, `expenses`, `remaining`, and category/month amounts are numbers in the user’s currency. `savingsRate` is a percentage rounded to two decimals: `(remaining / income) * 100`, or `0` when income is zero. `expenseByCategory` is sorted by amount descending and percentages sum to approximately `100`. `recentExpenses` contains up to five expenses from the requested month, newest first. `monthlySpending` contains the requested month and the four preceding months, including zero-value months.
+`totalIncome`, `totalExpenses`, `remainingBalance`, and category/month amounts are numbers in the user’s currency. `savingsRate` is the requested month’s unspent income percentage, rounded to two decimals, or `0` when monthly income is zero. `expenseBreakdown` is sorted by amount descending and percentages sum to approximately `100`. `recentExpenses` contains up to five expenses from the requested month, newest first. `sixMonthHistory` contains the requested month and the five preceding months, including zero-value months.
 
 Invalid or missing `month` returns `400`:
 
@@ -203,7 +221,7 @@ Invalid or missing `month` returns `400`:
 {
 	"error": {
 		"code": "INVALID_MONTH",
-		"message": "month must use the YYYY-MM format"
+		"message": "month must be a number from 1 to 12"
 	}
 }
 ```
@@ -229,12 +247,12 @@ export type DashboardMonthlySpending = {
 
 export type DashboardResponse = {
 	month: string
-	income: number
-	expenses: number
-	remaining: number
+	totalIncome: number
+	totalExpenses: number
+	remainingBalance: number
 	savingsRate: number
-	expenseByCategory: DashboardExpenseCategory[]
+	expenseBreakdown: DashboardExpenseCategory[]
 	recentExpenses: DashboardRecentExpense[]
-	monthlySpending: DashboardMonthlySpending[]
+	sixMonthHistory: DashboardMonthlySpending[]
 }
 ```

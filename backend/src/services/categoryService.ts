@@ -18,4 +18,25 @@ export const categoryService = {
       throw error
     }
   },
+
+  async remove(id: string, userId: string): Promise<void> {
+    await prisma.$transaction(async (transaction) => {
+      const category = await transaction.category.findFirst({ where: { id, userId }, select: { id: true, name: true } })
+      if (!category) throw new AppError(404, 'CATEGORY_NOT_FOUND', 'Category not found')
+
+      const expenseCount = await transaction.expense.count({ where: { userId, categoryId: id } })
+      if (expenseCount > 0) {
+        const fallbackName = category.name === 'Other' ? 'Other (uncategorized)' : 'Other'
+        const fallback = await transaction.category.upsert({
+          where: { userId_name: { userId, name: fallbackName } },
+          update: {},
+          create: { userId, name: fallbackName },
+          select: { id: true },
+        })
+        await transaction.expense.updateMany({ where: { userId, categoryId: id }, data: { categoryId: fallback.id } })
+      }
+
+      await transaction.category.delete({ where: { id } })
+    })
+  },
 }

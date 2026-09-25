@@ -25,6 +25,42 @@ export type Income = {
   source: string
   amount: number
   description: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export type IncomeInput = Omit<Income, 'id'>
+
+export type DashboardExpenseBreakdown = {
+  categoryId: string
+  category: string
+  amount: number
+  percentage: number
+}
+
+export type DashboardData = {
+  month: string
+  totalIncome: number
+  totalExpenses: number
+  remainingBalance: number
+  savingsRate: number
+  expenseBreakdown: DashboardExpenseBreakdown[]
+  sixMonthHistory: { month: string; amount: number }[]
+  recentExpenses: Expense[]
+}
+
+export type Budget = {
+  id: string
+  amount: number
+  categoryId: string
+  category: string
+  month: string
+  spent: number
+  remaining: number
+  progressPercentage: number
+  isOverBudget: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export type BudgetInput = Pick<Budget, 'amount' | 'categoryId' | 'month'>

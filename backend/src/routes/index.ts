@@ -5,7 +5,8 @@ import { getHealth } from '../controllers/healthController.js'
 import { getDashboard } from '../controllers/dashboardController.js'
 import { login, logout, me, register } from '../controllers/authController.js'
 import { requireAuthentication } from '../middleware/auth.js'
-import { createCategory, listCategories } from '../controllers/categoryController.js'
+import { createCategory, deleteCategory, listCategories } from '../controllers/categoryController.js'
+import { createBudget, deleteBudget, getBudget, listBudgets, updateBudget } from '../controllers/budgetController.js'
 
 export const apiRouter = Router()
 
@@ -17,6 +18,12 @@ apiRouter.get('/auth/me', requireAuthentication, me)
 apiRouter.get('/dashboard', requireAuthentication, getDashboard)
 apiRouter.get('/categories', requireAuthentication, listCategories)
 apiRouter.post('/categories', requireAuthentication, createCategory)
+apiRouter.delete('/categories/:id', requireAuthentication, deleteCategory)
+apiRouter.get('/budgets', requireAuthentication, listBudgets)
+apiRouter.get('/budgets/:id', requireAuthentication, getBudget)
+apiRouter.post('/budgets', requireAuthentication, createBudget)
+apiRouter.put('/budgets/:id', requireAuthentication, updateBudget)
+apiRouter.delete('/budgets/:id', requireAuthentication, deleteBudget)
 
 apiRouter.use('/expenses', requireAuthentication)
 apiRouter.get('/expenses', listExpenses)

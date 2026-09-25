@@ -8,12 +8,13 @@ import { Dashboard } from './pages/Dashboard'
 import { Expenses } from './pages/Expenses'
 import { Income } from './pages/Income'
 import { getApiErrorMessage } from './services/api'
-import { getDashboardData } from './services/dashboardService'
+import { getDashboardRecords } from './services/dashboardService'
 import { createExpense, deleteExpense, updateExpense } from './services/expenseService'
 import { createIncome, deleteIncome, updateIncome } from './services/incomeService'
 import type { Expense, ExpenseInput, Income as IncomeRecord, IncomeInput } from './types/finance'
 import { AuthPage } from './pages/AuthPage'
 import { Settings } from './pages/Settings'
+import { Budgets } from './pages/Budgets'
 
 function PrivateApp() {
   const [expenses, setExpenses] = useState<Expense[]>([])
@@ -22,14 +23,16 @@ function PrivateApp() {
   const [loadError, setLoadError] = useState('')
   const [error, setError] = useState('')
   const [notice, setNotice] = useState('')
+  const [dashboardRefreshToken, setDashboardRefreshToken] = useState(0)
 
   const refreshData = async () => {
     setLoading(true)
     setLoadError('')
     try {
-      const data = await getDashboardData()
+      const data = await getDashboardRecords()
       setExpenses(data.expenses)
       setIncomes(data.incomes)
+      setDashboardRefreshToken((token) => token + 1)
       setError('')
     } catch (requestError) {
       setLoadError('Unable to load your data. Try again.')
@@ -68,7 +71,7 @@ function PrivateApp() {
   const editIncome = (id: string, income: IncomeInput) => runMutation(async () => { await updateIncome(id, income) }, 'Income updated successfully.')
   const removeIncome = (id: string) => runMutation(async () => { await deleteIncome(id) }, 'Income deleted successfully.')
 
-  return <><div aria-live="polite" className="fixed right-4 top-4 z-50 w-[min(24rem,calc(100vw-2rem))] space-y-2">{error && <div className="rounded-xl border border-[#ff9b70]/30 bg-[#321e1a] px-4 py-3 text-sm text-[#ffb18f]" role="alert">{error}</div>}{notice && <div className="rounded-xl border border-[#d5f477]/30 bg-[#27351b] px-4 py-3 text-sm text-[#d5f477]" role="status">{notice}</div>}</div><Routes><Route element={<AppShell />}><Route element={<Dashboard expenses={expenses} incomes={incomes} loading={loading} loadError={loadError} onRetry={refreshData} />} path="/" /><Route element={<Expenses expenses={expenses} loading={loading} loadError={loadError} onRetry={refreshData} onDelete={removeExpense} onUpdate={editExpense} />} path="/expenses" /><Route element={<AddExpense onCreate={addExpense} />} path="/expenses/new" /><Route element={<Income incomes={incomes} loading={loading} loadError={loadError} onRetry={refreshData} onCreate={addIncome} onDelete={removeIncome} onUpdate={editIncome} />} path="/income" /><Route element={<Settings />} path="/settings" /></Route></Routes></>
+  return <><div aria-live="polite" className="fixed right-4 top-4 z-50 w-[min(24rem,calc(100vw-2rem))] space-y-2">{error && <div className="rounded-xl border border-[#ff9b70]/30 bg-[#321e1a] px-4 py-3 text-sm text-[#ffb18f]" role="alert">{error}</div>}{notice && <div className="rounded-xl border border-[#d5f477]/30 bg-[#27351b] px-4 py-3 text-sm text-[#d5f477]" role="status">{notice}</div>}</div><Routes><Route element={<AppShell />}><Route element={<Dashboard refreshToken={dashboardRefreshToken} />} path="/" /><Route element={<Expenses expenses={expenses} loading={loading} loadError={loadError} onRetry={refreshData} onDelete={removeExpense} onUpdate={editExpense} />} path="/expenses" /><Route element={<AddExpense onCreate={addExpense} />} path="/expenses/new" /><Route element={<Income incomes={incomes} loading={loading} loadError={loadError} onRetry={refreshData} onCreate={addIncome} onDelete={removeIncome} onUpdate={editIncome} />} path="/income" /><Route element={<Budgets />} path="/budgets" /><Route element={<Settings />} path="/settings" /></Route></Routes></>
 }
 
 function App() {

@@ -3,6 +3,8 @@ import { prisma } from '../config/prisma.js'
 import type { DashboardResponse, ExpenseResponse } from '../types/api.js'
 import { monthRange } from '../validators/dashboard.js'
 
+type DashboardPeriod = { month: number; year: number; key: string }
+
 function decimalToNumber(value: Prisma.Decimal | null | undefined): number {
   return value?.toNumber() ?? 0
 }
@@ -38,13 +40,15 @@ function toExpenseResponse(expense: {
 }
 
 export const dashboardService = {
-  async get(userId: string, month: string): Promise<DashboardResponse> {
-    const { start, end } = monthRange(month)
-    const firstMonth = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() - 4, 1))
+  async get(userId: string, period: DashboardPeriod): Promise<DashboardResponse> {
+    const { start, end } = monthRange(period.month, period.year)
+    const firstMonth = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() - 5, 1))
 
-    const [incomeAggregate, expenseAggregate, categoryGroups, categories, recentExpenses, chartExpenses] = await Promise.all([
+    const [incomeAggregate, expenseAggregate, globalIncomeAggregate, globalExpenseAggregate, categoryGroups, categories, recentExpenses, chartExpenses] = await Promise.all([
       prisma.income.aggregate({ where: { userId, date: { gte: start, lt: end } }, _sum: { amount: true } }),
       prisma.expense.aggregate({ where: { userId, date: { gte: start, lt: end } }, _sum: { amount: true } }),
+      prisma.income.aggregate({ where: { userId }, _sum: { amount: true } }),
+      prisma.expense.aggregate({ where: { userId }, _sum: { amount: true } }),
       prisma.expense.groupBy({
         by: ['categoryId'],
         where: { userId, date: { gte: start, lt: end } },
@@ -65,11 +69,13 @@ export const dashboardService = {
 
     const income = decimalToNumber(incomeAggregate._sum.amount)
     const expenses = decimalToNumber(expenseAggregate._sum.amount)
-    const remaining = income - expenses
-    const savingsRate = income === 0 ? 0 : Number(((remaining / income) * 100).toFixed(2))
+    const globalIncome = decimalToNumber(globalIncomeAggregate._sum.amount)
+    const globalExpenses = decimalToNumber(globalExpenseAggregate._sum.amount)
+    const remaining = globalIncome - globalExpenses
+    const savingsRate = income === 0 ? 0 : Number((((income - expenses) / income) * 100).toFixed(2))
     const categoryNames = new Map(categories.map((category) => [category.id, category.name]))
 
-    const expenseByCategory = categoryGroups
+    const expenseBreakdown = categoryGroups
       .map((group) => {
         const amount = decimalToNumber(group._sum.amount)
         return {
@@ -87,24 +93,24 @@ export const dashboardService = {
       monthlyTotals.set(key, (monthlyTotals.get(key) ?? 0) + expense.amount.toNumber())
     }
 
-    const monthlySpending = Array.from({ length: 5 }, (_, index) => {
+    const sixMonthHistory = Array.from({ length: 6 }, (_, index) => {
       const date = new Date(Date.UTC(firstMonth.getUTCFullYear(), firstMonth.getUTCMonth() + index, 1))
       const key = monthString(date)
       return { month: key, amount: Number((monthlyTotals.get(key) ?? 0).toFixed(2)) }
     })
 
     return {
-      month,
-      income,
-      expenses,
-      remaining,
+      month: period.key,
+      totalIncome: income,
+      totalExpenses: expenses,
+      remainingBalance: remaining,
       savingsRate,
-      expenseByCategory,
+      expenseBreakdown,
       recentExpenses: recentExpenses.map((expense) => ({
         ...toExpenseResponse(expense),
         category: categoryNames.get(expense.categoryId) ?? 'Unknown',
       })),
-      monthlySpending,
+      sixMonthHistory,
     }
   },
 }

@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Icon } from './Icon'
+import { useAuth } from '../context/AuthContext'
 
 type PageHeaderProps = { eyebrow?: string; title: string; description?: string; action?: ReactNode }
 
@@ -15,7 +16,9 @@ export function PageHeader({ eyebrow, title, description, action }: PageHeaderPr
 }
 
 export function UserProfile() {
-  return <div className="hidden items-center gap-3 border-l border-white/10 pl-5 sm:flex"><div className="grid h-10 w-10 place-items-center rounded-full bg-[#4ecdc4] text-sm font-bold text-[#102222]">JD</div><div><p className="text-sm font-semibold text-white">Jordan Davis</p><p className="text-xs text-[#78837d]">Personal account</p></div><Icon name="chevron" size={15} /></div>
+  const { user } = useAuth()
+  const initials = user?.name.slice(0, 2).toUpperCase() ?? 'ME'
+  return <div className="hidden items-center gap-3 border-l border-white/10 pl-5 sm:flex"><div className="grid h-10 w-10 place-items-center rounded-full bg-[#4ecdc4] text-sm font-bold text-[#102222]">{initials}</div><div><p className="text-sm font-semibold text-white">{user?.name ?? 'Account'}</p><p className="text-xs text-[#78837d]">{user?.email ?? 'Personal account'}</p></div><Icon name="chevron" size={15} /></div>
 }
 
 export function MonthPicker() {

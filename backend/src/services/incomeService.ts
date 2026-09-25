@@ -1,12 +1,10 @@
 import { Prisma } from '@prisma/client'
 import { prisma } from '../config/prisma.js'
-import type { IncomeInput } from '../types/api.js'
+import type { IncomeInput, IncomeResponse } from '../types/api.js'
 import { AppError } from '../types/errors.js'
 
-type IncomeResponse = { id: string; amount: number; source: string; date: string; description: string | null; createdAt: string }
-
-function toResponse(income: { id: string; amount: Prisma.Decimal; source: string; date: Date; description: string | null; createdAt: Date }): IncomeResponse {
-  return { id: income.id, amount: income.amount.toNumber(), source: income.source, date: income.date.toISOString().slice(0, 10), description: income.description, createdAt: income.createdAt.toISOString() }
+function toResponse(income: { id: string; amount: Prisma.Decimal; source: string; date: Date; description: string | null; createdAt: Date; updatedAt?: Date }): IncomeResponse {
+  return { id: income.id, amount: income.amount.toNumber(), source: income.source, date: income.date.toISOString().slice(0, 10), description: income.description, createdAt: income.createdAt.toISOString(), updatedAt: (income.updatedAt ?? income.createdAt).toISOString() }
 }
 
 export const incomeService = {
