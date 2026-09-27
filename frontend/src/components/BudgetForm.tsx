@@ -119,7 +119,7 @@ export function BudgetForm({ initialBudget, onSubmit, onCancel }: BudgetFormProp
 
       <div className="flex gap-3 pt-1">
         <button
-          className="inline-flex items-center justify-center rounded-lg bg-[var(--color-nav-active-bg)] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-wait disabled:opacity-60 cursor-pointer transition"
+          className="inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-wait disabled:opacity-60 cursor-pointer transition"
           disabled={saving}
           type="submit"
         >

@@ -16,11 +16,11 @@ export function Sidebar() {
 
   return (
     <aside className="hidden w-64 shrink-0 flex-col border-r border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-6 backdrop-blur-xl transition-colors lg:flex">
-      {/* Brand Header: Text-based editorial wordmark, NO lime square */}
+      {/* Brand Header */}
       <div className="flex items-center gap-2 px-2">
-        <span className="brand-wordmark text-2xl font-normal tracking-tight text-[var(--color-text)] select-none">
-          everyday<span className="text-[var(--color-accent)]">.</span>
-        </span>
+        <div className="brand-wordmark text-2xl font-serif text-[var(--color-brand)] select-none">
+          everyday.
+        </div>
       </div>
 
       {/* Navigation Links */}
@@ -35,8 +35,8 @@ export function Sidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                   isActive
-                    ? 'border border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-sm'
-                    : 'border border-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
+                    ? 'bg-[var(--color-primary)] text-white shadow-sm'
+                    : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
                 }`
               }
               end={link.to === '/'}
@@ -61,8 +61,8 @@ export function Sidebar() {
             className={({ isActive }) =>
               `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                 isActive
-                  ? 'border border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-sm'
-                  : 'border border-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
+                  ? 'bg-[var(--color-primary)] text-white shadow-sm'
+                  : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
               }`
             }
             to="/settings"

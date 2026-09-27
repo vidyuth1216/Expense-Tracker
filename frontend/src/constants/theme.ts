@@ -13,6 +13,8 @@ export interface ThemeColors {
   textMuted: string
   accent: string
   accentHover: string
+  primary: string
+  primaryHover: string
   positive: string
   negative: string
   warning: string
@@ -37,12 +39,14 @@ export const THEME_COLORS: Record<Theme, ThemeColors> = {
     textMuted: '#666873',
     accent: '#9B8AFB',
     accentHover: '#6F61C0',
+    primary: '#5A5478',
+    primaryHover: '#6D6690',
     positive: '#5D9B76',
     negative: '#C66A72',
     warning: '#C89B58',
     border: '#292C34',
     borderStrong: '#3A3E48',
-    brand: '#F2F1EE',
+    brand: '#F5F2EB',
     chartIncome: '#5D9B76',
     chartExpense: '#C66A72',
     chartAccent: '#9B8AFB',
@@ -59,6 +63,8 @@ export const THEME_COLORS: Record<Theme, ThemeColors> = {
     textMuted: '#9CA3AF',
     accent: '#7C3AED',
     accentHover: '#5B21B6',
+    primary: '#7C3AED',
+    primaryHover: '#6D28D9',
     positive: '#059669',
     negative: '#DC2626',
     warning: '#D97706',

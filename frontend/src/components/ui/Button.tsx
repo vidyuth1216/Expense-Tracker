@@ -25,7 +25,7 @@ export function Button({
 
   const variantStyles = {
     primary:
-      'bg-[var(--color-nav-active-bg)] text-white hover:brightness-110 active:brightness-95 shadow-sm',
+      'bg-[var(--color-primary)] text-white hover:brightness-110 active:brightness-95 shadow-sm',
     secondary:
       'border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] hover:border-[var(--color-border-strong)] hover:bg-[var(--color-surface-secondary)]',
     destructive:

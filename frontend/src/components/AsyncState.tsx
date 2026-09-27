@@ -35,7 +35,7 @@ export function EmptyState({ title, description, action }: StateMessageProps) {
       <p className="mt-1.5 text-xs text-[var(--color-text-muted)]">{description}</p>
       {actionDetails && (
         <button
-          className="mt-4 rounded-lg bg-[var(--color-nav-active-bg)] px-4 py-2 text-xs font-medium text-white shadow-sm hover:brightness-110 cursor-pointer transition"
+          className="mt-4 rounded-lg bg-[var(--color-primary)] px-4 py-2 text-xs font-medium text-white shadow-sm hover:brightness-110 cursor-pointer transition"
           onClick={actionDetails.onClick}
           type="button"
         >

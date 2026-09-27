@@ -1,6 +1,7 @@
 import { PageHeader } from '../components/PageHeader'
 import { useAuth } from '../context/AuthContext'
 import { Card, Button } from '../components/ui'
+import { Icon } from '../components/Icon'
 
 export function Settings() {
   const { user, logout } = useAuth()
@@ -16,44 +17,75 @@ export function Settings() {
         <Card className="p-5 sm:p-6">
           <h2 className="text-base font-semibold text-[var(--color-text)]">Account</h2>
           <p className="mt-1 text-xs text-[var(--color-text-muted)]">Your profile information</p>
-          <dl className="mt-6 grid gap-4 text-sm">
-            <div className="border-b border-[var(--color-border-subtle)] pb-3">
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+
+          <div className="mt-6 space-y-4">
+            <div>
+              <label className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                 Name
-              </dt>
-              <dd className="mt-1 font-medium text-[var(--color-text)]">{user?.name}</dd>
-            </div>
-            <div className="border-b border-[var(--color-border-subtle)] pb-3">
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
-                Email
-              </dt>
-              <dd className="mt-1 break-words font-medium text-[var(--color-text)]">{user?.email}</dd>
+              </label>
+              <input
+                className="mt-1.5 h-10 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-secondary)]/50 px-3.5 text-sm text-[var(--color-text)] outline-none"
+                readOnly
+                value={user?.name ?? ''}
+              />
             </div>
             <div>
-              <dt className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
-                Currency
-              </dt>
-              <dd className="mt-1 font-medium text-[var(--color-text)]">{user?.currency ?? 'INR'}</dd>
+              <label className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+                Email
+              </label>
+              <input
+                className="mt-1.5 h-10 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-secondary)]/50 px-3.5 text-sm text-[var(--color-text)] outline-none"
+                readOnly
+                value={user?.email ?? ''}
+              />
             </div>
-          </dl>
+            <div>
+              <label className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+                Currency
+              </label>
+              <div className="relative mt-1.5">
+                <select
+                  aria-label="Currency"
+                  className="h-10 w-full appearance-none rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-secondary)]/50 px-3.5 pr-10 text-sm text-[var(--color-text)] outline-none cursor-default"
+                  disabled
+                  value={user?.currency ?? 'INR'}
+                >
+                  <option value="INR">INR</option>
+                  <option value="USD">USD</option>
+                  <option value="EUR">EUR</option>
+                  <option value="GBP">GBP</option>
+                </select>
+                <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]">
+                  <Icon name="chevron" size={15} />
+                </span>
+              </div>
+            </div>
+          </div>
         </Card>
 
-        <Card className="p-5 sm:p-6 flex flex-col justify-between">
+        <Card className="relative flex flex-col justify-between overflow-hidden p-5 sm:p-6 min-h-[220px]">
           <div>
             <h2 className="text-base font-semibold text-[var(--color-text)]">Session</h2>
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">Sign out of this device</p>
-            <p className="mt-4 text-xs text-[var(--color-text-secondary)]">
-              Terminates your current active session on this browser. You can sign back in anytime.
-            </p>
+            <div className="mt-6">
+              <Button
+                variant="primary"
+                onClick={() => void logout()}
+                type="button"
+              >
+                Sign out
+              </Button>
+            </div>
           </div>
-          <div className="pt-6">
-            <Button
-              variant="destructive"
-              onClick={() => void logout()}
-              type="button"
-            >
-              Sign out
-            </Button>
+
+          {/* Decorative Sparkle Watermark matching reference */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute bottom-4 right-4 text-[var(--color-text-muted)] opacity-20"
+          >
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+            </svg>
           </div>
         </Card>
       </div>

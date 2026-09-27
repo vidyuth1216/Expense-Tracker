@@ -202,7 +202,7 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
 
         <div className="flex flex-wrap gap-3 pt-1">
           <button
-            className="inline-flex items-center justify-center rounded-lg bg-[var(--color-nav-active-bg)] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-wait disabled:opacity-60 cursor-pointer transition"
+            className="inline-flex items-center justify-center rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:brightness-110 disabled:cursor-wait disabled:opacity-60 cursor-pointer transition"
             disabled={submitting}
             type="submit"
           >
@@ -277,7 +277,7 @@ export function ExpenseForm({ initialExpense, onSubmit, onCancel }: ExpenseFormP
                   Cancel
                 </button>
                 <button
-                  className="rounded-lg bg-[var(--color-nav-active-bg)] px-4 py-2 text-xs font-medium text-white shadow-sm hover:brightness-110 disabled:opacity-60 cursor-pointer transition"
+                  className="rounded-lg bg-[var(--color-primary)] px-4 py-2 text-xs font-medium text-white shadow-sm hover:brightness-110 disabled:opacity-60 cursor-pointer transition"
                   disabled={creatingCategory}
                   type="submit"
                 >

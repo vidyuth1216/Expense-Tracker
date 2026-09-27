@@ -22,9 +22,9 @@ export function AppShell() {
         {/* Mobile Header: Brand wordmark, NO lime square */}
         <header className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)]/95 px-5 py-3.5 backdrop-blur-md lg:hidden">
           <div className="flex items-center gap-2">
-            <span className="brand-wordmark text-xl font-normal tracking-tight text-[var(--color-text)]">
-              everyday<span className="text-[var(--color-accent)]">.</span>
-            </span>
+            <div className="brand-wordmark text-xl font-serif text-[var(--color-brand)] select-none">
+              everyday.
+            </div>
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle compact />
@@ -49,7 +49,7 @@ export function AppShell() {
                   className={({ isActive }) =>
                     `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                       isActive
-                        ? 'border border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-sm'
+                        ? 'bg-[var(--color-primary)] text-white shadow-sm'
                         : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
                     }`
                   }
@@ -98,7 +98,7 @@ export function AppShell() {
           </NavLink>
           <NavLink
             aria-label="Add expense"
-            className="mx-auto grid h-11 w-11 -translate-y-3 place-items-center rounded-full bg-[var(--color-accent)] text-white shadow-[0_4px_16px_rgba(155,138,251,0.4)] transition-all hover:brightness-110 active:scale-95"
+            className="mx-auto grid h-11 w-11 -translate-y-3 place-items-center rounded-full bg-[var(--color-primary)] text-white shadow-md transition-all hover:brightness-110 active:scale-95"
             to="/expenses/new"
           >
             <Icon name="plus" size={20} />
