@@ -192,7 +192,7 @@ export function Analytics() {
                 />
                 <Tooltip
                   contentStyle={tooltipStyle}
-                  cursor={{ fill: 'var(--color-surface-elevated)' }}
+                  cursor={{ fill: '#282536' }}
                   formatter={(value, name) => [
                     formatINR(Number(value)),
                     String(name).charAt(0).toUpperCase() + String(name).slice(1),
@@ -342,7 +342,7 @@ export function Analytics() {
                 />
                 <Tooltip
                   contentStyle={tooltipStyle}
-                  cursor={{ fill: 'var(--color-surface-elevated)' }}
+                  cursor={{ fill: '#282536' }}
                   formatter={(value) => [formatINR(Number(value)), 'Savings']}
                 />
                 <Bar dataKey="savings" fill={colors.accent} radius={[4, 4, 0, 0]} />
