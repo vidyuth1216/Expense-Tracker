@@ -28,8 +28,8 @@ export function TableSkeleton({ columns = 5 }: { columns?: number }) {
   </div>
 }
 
-export function DashboardSkeleton() {
-  return <div aria-label="Loading dashboard" className="space-y-5" role="status">
+export function DashboardSkeleton({ label = 'Loading dashboard' }: { label?: string } = {}) {
+  return <div aria-label={label} className="space-y-5" role="status">
     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{Array.from({ length: 4 }, (_, index) => <div className="h-36 animate-pulse rounded-2xl bg-white/8" key={index} />)}</div>
     <div className="grid gap-5 xl:grid-cols-2"><div className="h-72 animate-pulse rounded-2xl bg-white/8" /><div className="h-72 animate-pulse rounded-2xl bg-white/8" /></div>
     <div className="h-64 animate-pulse rounded-2xl bg-white/8" />

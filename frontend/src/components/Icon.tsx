@@ -1,6 +1,22 @@
-type IconName = 'grid' | 'receipt' | 'plus' | 'wallet' | 'chart' | 'settings' | 'search' | 'chevron' | 'edit' | 'trash' | 'arrowUp' | 'arrowDown' | 'menu' | 'close'
+export type IconName =
+  | 'grid'
+  | 'receipt'
+  | 'plus'
+  | 'wallet'
+  | 'chart'
+  | 'settings'
+  | 'search'
+  | 'chevron'
+  | 'edit'
+  | 'trash'
+  | 'arrowUp'
+  | 'arrowDown'
+  | 'menu'
+  | 'close'
+  | 'sun'
+  | 'moon'
 
-type IconProps = { name: IconName; size?: number }
+export type IconProps = { name: IconName; size?: number; className?: string }
 
 const paths: Record<IconName, string> = {
   grid: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
@@ -17,12 +33,27 @@ const paths: Record<IconName, string> = {
   arrowDown: 'm5 9 7 7 7-7',
   menu: 'M4 7h16M4 12h16M4 17h16',
   close: 'M6 6l12 12M18 6 6 18',
+  sun: 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0-6v3m0 14v3m-7.07-16.07 2.12 2.12m9.9 9.9 2.12 2.12M2 12h3m14 0h3M4.93 19.07l2.12-2.12m9.9-9.9 2.12-2.12',
+  moon: 'M15.5 3.5a8 8 0 1 0 5 11.5 7.5 7.5 0 0 1-5-11.5z M19 3.5l.5 1 1 .5-1 .5-.5 1-.5-1-1-.5 1-.5.5-1z M15 7l.4.8.8.4-.8.4-.4.8-.4-.8-.8-.4.8-.4.4-.8z',
 }
 
-export function Icon({ name, size = 18 }: IconProps) {
+export function Icon({ name, size = 18, className = '' }: IconProps) {
   return (
-    <svg aria-hidden="true" fill="none" height={size} viewBox="0 0 24 24" width={size}>
-      <path d={paths[name]} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" />
+    <svg
+      aria-hidden="true"
+      fill="none"
+      height={size}
+      viewBox="0 0 24 24"
+      width={size}
+      className={className}
+    >
+      <path
+        d={paths[name]}
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
     </svg>
   )
 }

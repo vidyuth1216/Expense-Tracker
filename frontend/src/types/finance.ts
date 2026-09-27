@@ -49,6 +49,15 @@ export type DashboardData = {
   recentExpenses: Expense[]
 }
 
+export type AnalyticsData = {
+  monthlyTotals: { month: string; income: number; expenses: number; savings: number }[]
+  categoryBreakdown: { category: string; amount: number; percentage: number }[]
+  totalSpending: number
+  averageMonthlySpending: number
+  averageDailySpending: number
+  highestSpendingCategory: { category: string; amount: number; percentage: number } | null
+}
+
 export type Budget = {
   id: string
   amount: number
