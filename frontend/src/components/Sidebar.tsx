@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { Icon } from './Icon'
 import { useAuth } from '../context/AuthContext'
+import { ThemeToggle } from './ThemeToggle'
 
 const links = [
   { to: '/', label: 'Overview', icon: 'grid' as const },
@@ -12,30 +13,82 @@ const links = [
 
 export function Sidebar() {
   const { user, logout } = useAuth()
+
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-white/8 bg-[#0d1311]/80 px-5 py-7 backdrop-blur-xl lg:block">
-      <div className="flex items-center gap-3 px-3">
-        <div className="grid h-9 w-9 place-items-center rounded-xl bg-[#d5f477] text-lg font-black text-[#151814]">e</div>
-        <span className="text-lg font-semibold tracking-tight">everyday<span className="text-[#d5f477]">.</span></span>
+    <aside className="hidden w-64 shrink-0 flex-col border-r border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-6 backdrop-blur-xl transition-colors lg:flex">
+      {/* Brand Header: Text-based editorial wordmark, NO lime square */}
+      <div className="flex items-center gap-2 px-2">
+        <span className="brand-wordmark text-2xl font-normal tracking-tight text-[var(--color-text)] select-none">
+          everyday<span className="text-[var(--color-accent)]">.</span>
+        </span>
       </div>
-      <p className="mb-4 mt-14 px-3 text-[10px] font-bold uppercase tracking-[0.22em] text-[#707876]">Workspace</p>
-      <nav className="space-y-1">
-        {links.map((link) => (
-          <NavLink key={link.to} className={({ isActive }) => `flex items-center gap-3 rounded-xl border px-3 py-3 text-sm font-medium transition ${isActive ? 'border-[#d5f477]/30 bg-[#d5f477] text-[#151814] shadow-[0_8px_24px_rgba(213,244,119,0.12)]' : 'border-transparent text-[#8c9490] hover:bg-white/5 hover:text-white'}`} end={link.to === '/'} to={link.to}>
-            <Icon name={link.icon} size={18} />
-            {link.label}
+
+      {/* Navigation Links */}
+      <div className="mt-8">
+        <p className="mb-3 px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+          Workspace
+        </p>
+        <nav className="space-y-1">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'border border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-sm'
+                    : 'border border-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
+                }`
+              }
+              end={link.to === '/'}
+              to={link.to}
+            >
+              <Icon name={link.icon} size={18} />
+              <span>{link.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+
+      {/* Bottom Section with ThemeToggle & User Profile */}
+      <div className="mt-auto space-y-4 pt-6">
+        {/* Mounted ThemeToggle */}
+        <div className="flex justify-center px-1">
+          <ThemeToggle />
+        </div>
+
+        <nav>
+          <NavLink
+            className={({ isActive }) =>
+              `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                isActive
+                  ? 'border border-[var(--color-border)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] shadow-sm'
+                  : 'border border-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-secondary)] hover:text-[var(--color-text)]'
+              }`
+            }
+            to="/settings"
+          >
+            <Icon name="settings" size={18} />
+            <span>Settings</span>
           </NavLink>
-        ))}
-      </nav>
-      <div className="mt-auto pt-64">
-        <NavLink className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-[#8c9490] hover:bg-white/5 hover:text-white" to="/settings">
-          <Icon name="settings" size={18} />
-          Settings
-        </NavLink>
-        <div className="mt-5 flex items-center gap-3 border-t border-white/8 px-3 pt-5">
-          <div className="grid h-9 w-9 place-items-center rounded-full bg-[#4ecdc4] text-sm font-bold text-[#102222]">{user?.name.slice(0, 2).toUpperCase()}</div>
-          <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{user?.name}</p><p className="truncate text-xs text-[#707876]">{user?.email}</p></div>
-          <button aria-label="Sign out" className="text-xs text-[#84908a] hover:text-white" onClick={() => void logout()} type="button">Exit</button>
+        </nav>
+
+        {/* User Profile Card */}
+        <div className="flex items-center gap-3 border-t border-[var(--color-border)] px-1 pt-4">
+          <div className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--color-surface-elevated)] border border-[var(--color-border)] text-xs font-semibold text-[var(--color-text)]">
+            {user?.name ? user.name.slice(0, 2).toUpperCase() : 'ME'}
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-xs font-medium text-[var(--color-text)]">{user?.name}</p>
+            <p className="truncate text-[11px] text-[var(--color-text-muted)]">{user?.email}</p>
+          </div>
+          <button
+            aria-label="Sign out"
+            className="text-xs text-[var(--color-text-muted)] hover:text-[var(--color-negative)] transition-colors cursor-pointer"
+            onClick={() => void logout()}
+            type="button"
+          >
+            Exit
+          </button>
         </div>
       </div>
     </aside>
