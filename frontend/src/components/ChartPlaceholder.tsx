@@ -103,9 +103,9 @@ export function ChartPlaceholder({ type, data, total = 0 }: ChartPlaceholderProp
             wrapperStyle={{ outline: 'none' }}
           />
           <Bar
-            activeBar={{ fill: colors.negative, opacity: 0.85 }}
+            activeBar={{ fill: 'var(--color-primary)', opacity: 0.85 }}
             dataKey="amount"
-            fill={colors.negative}
+            fill="var(--color-primary)"
             name="Spent"
             radius={[4, 4, 0, 0]}
           />

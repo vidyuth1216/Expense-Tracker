@@ -100,7 +100,7 @@ export function Income({
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium text-[var(--color-text-secondary)]">Tracked income</p>
             <span
-              className="flex h-6 w-6 items-center justify-center rounded-md border border-[var(--color-positive)]/25 bg-[var(--color-positive)]/15 text-[var(--color-positive)]"
+              className="flex h-6 w-6 items-center justify-center rounded-md border border-[var(--color-success)]/30 bg-[var(--color-success)]/15 text-[var(--color-success)]"
               aria-hidden="true"
             >
               <Icon name="arrowUp" size={12} />
@@ -113,7 +113,7 @@ export function Income({
 
           <div className="mt-3 flex items-center justify-between text-xs text-[var(--color-text-muted)]">
             <p>
-              <span className="font-semibold text-[var(--color-positive)]">
+              <span className="font-semibold text-[var(--color-success)]">
                 {incomes.length} entries
               </span>{' '}
               vs last month
@@ -127,7 +127,7 @@ export function Income({
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium text-[var(--color-text-secondary)]">Income sources</p>
             <span
-              className="flex h-6 w-6 items-center justify-center rounded-md border border-[var(--color-positive)]/25 bg-[var(--color-positive)]/15 text-[var(--color-positive)]"
+              className="flex h-6 w-6 items-center justify-center rounded-md border border-[var(--color-success)]/30 bg-[var(--color-success)]/15 text-[var(--color-success)]"
               aria-hidden="true"
             >
               <Icon name="arrowUp" size={12} />
@@ -139,7 +139,7 @@ export function Income({
           </p>
 
           <p className="mt-3 text-xs text-[var(--color-text-muted)]">
-            <span className="font-semibold text-[var(--color-positive)]">
+            <span className="font-semibold text-[var(--color-success)]">
               From your income records
             </span>{' '}
             vs last month

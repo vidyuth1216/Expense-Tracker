@@ -165,7 +165,7 @@ export function Budgets() {
   )
 }
 
-function BudgetCard({
+export function BudgetCard({
   budget,
   onEdit,
   onDelete,
@@ -181,8 +181,8 @@ function BudgetCard({
     <article
       className={`rounded-xl border p-5 transition-colors ${
         isOver
-          ? 'border-[var(--color-negative)]/40 bg-[var(--color-surface)]'
-          : 'border-[var(--color-positive)]/40 bg-[var(--color-surface)]'
+          ? 'border-[var(--color-danger)]/50 bg-[var(--color-surface)]'
+          : 'border-[var(--color-success)]/50 bg-[var(--color-surface)]'
       }`}
     >
       <div className="flex items-start justify-between gap-3">
@@ -201,7 +201,7 @@ function BudgetCard({
           </button>
           <button
             aria-label={`Delete ${budget.category} budget`}
-            className="rounded-md p-1.5 text-[var(--color-text-muted)] hover:bg-[var(--color-negative)]/15 hover:text-[var(--color-negative)] transition-colors cursor-pointer"
+            className="rounded-md p-1.5 text-[var(--color-text-muted)] hover:bg-[var(--color-danger)]/15 hover:text-[var(--color-danger)] transition-colors cursor-pointer"
             onClick={() => onDelete(budget)}
             type="button"
           >
@@ -221,7 +221,7 @@ function BudgetCard({
         </div>
         <p
           className={`text-sm font-bold tabular-nums ${
-            isOver ? 'text-[var(--color-negative)]' : 'text-[var(--color-positive)]'
+            isOver ? 'text-[var(--color-danger)]' : 'text-[var(--color-success)]'
           }`}
         >
           {budget.progressPercentage.toFixed(0)}%
@@ -232,7 +232,7 @@ function BudgetCard({
       <div className="mt-4 h-2 overflow-hidden rounded-full bg-[var(--color-surface-elevated)] border border-[var(--color-border)]">
         <div
           className={`h-full rounded-full transition-all duration-300 ${
-            isOver ? 'bg-[var(--color-negative)]' : 'bg-[var(--color-positive)]'
+            isOver ? 'bg-[var(--color-danger)]' : 'bg-[var(--color-success)]'
           }`}
           style={{ width: `${progress}%` }}
         />
@@ -242,7 +242,7 @@ function BudgetCard({
       <p
         className={`mt-3 text-sm ${
           isOver
-            ? 'font-semibold text-[var(--color-negative)]'
+            ? 'font-semibold text-[var(--color-danger)]'
             : 'font-medium text-[var(--color-text-secondary)]'
         }`}
       >

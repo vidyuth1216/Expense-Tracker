@@ -3,24 +3,26 @@
 :root,
 [data-theme="midnight"] {
   color-scheme: dark;
-  --color-bg: #0B0C0F;
-  --color-surface: #121419;
-  --color-surface-secondary: #181A21;
-  --color-surface-elevated: #1E2028;
-  --color-text: #F2F1EE;
-  --color-text-secondary: #9A9BA3;
-  --color-text-muted: #666873;
-  --color-accent: #9B8AFB;
-  --color-accent-hover: #6F61C0;
-  --color-primary: #5A5478;
-  --color-primary-hover: #6D6690;
-  --color-positive: #5D9B76;
-  --color-negative: #C66A72;
-  --color-warning: #C89B58;
-  --color-border: #292C34;
-  --color-border-subtle: #1E2129;
-  --color-border-strong: #3A3E48;
-  --color-brand: #F5F2EB;
+  --color-bg: #15131d;
+  --color-surface: #1f1c2b;
+  --color-surface-secondary: #242032;
+  --color-surface-elevated: #282536;
+  --color-primary: #6b5b8a;
+  --color-primary-hover: #7e6ca0;
+  --color-brand: #f0e4d3;
+  --color-text: #ffffff;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #9ca3af;
+  --color-danger: #d27269;
+  --color-success: #5d9b84;
+  --color-positive: var(--color-success);
+  --color-negative: var(--color-danger);
+  --color-accent: #6b5b8a;
+  --color-accent-hover: #7e6ca0;
+  --color-warning: #c89b58;
+  --color-border: #2e2a3d;
+  --color-border-subtle: #242133;
+  --color-border-strong: #3c374d;
   --color-nav-active-bg: var(--color-primary);
 }
 
@@ -30,20 +32,22 @@
   --color-surface: #FFFFFF;
   --color-surface-secondary: #F1F3F5;
   --color-surface-elevated: #FFFFFF;
+  --color-primary: #7C3AED;
+  --color-primary-hover: #6D28D9;
+  --color-brand: #111827;
   --color-text: #111827;
   --color-text-secondary: #4B5563;
   --color-text-muted: #9CA3AF;
+  --color-danger: #DC2626;
+  --color-success: #059669;
+  --color-positive: var(--color-success);
+  --color-negative: var(--color-danger);
   --color-accent: #7C3AED;
   --color-accent-hover: #5B21B6;
-  --color-primary: #7C3AED;
-  --color-primary-hover: #6D28D9;
-  --color-positive: #059669;
-  --color-negative: #DC2626;
   --color-warning: #D97706;
   --color-border: #E5E7EB;
   --color-border-subtle: #F3F4F6;
   --color-border-strong: #D1D5DB;
-  --color-brand: #111827;
   --color-nav-active-bg: var(--color-primary);
 }
 
