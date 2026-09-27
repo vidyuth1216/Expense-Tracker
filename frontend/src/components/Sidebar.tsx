@@ -18,7 +18,7 @@ export function Sidebar() {
     <aside className="hidden w-64 shrink-0 flex-col border-r border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-6 backdrop-blur-xl transition-colors lg:flex">
       {/* Brand Header */}
       <div className="flex items-center gap-2 px-2">
-        <div className="brand-wordmark text-2xl font-serif text-[var(--color-brand)]">
+        <div className="brand-wordmark text-2xl font-serif text-[var(--color-brand)] select-none">
           everyday.
         </div>
       </div>

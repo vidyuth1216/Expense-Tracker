@@ -11,12 +11,10 @@ export interface ThemeColors {
   text: string
   textSecondary: string
   textMuted: string
-  primary: string
-  primaryHover: string
   accent: string
   accentHover: string
-  danger: string
-  success: string
+  primary: string
+  primaryHover: string
   positive: string
   negative: string
   warning: string
@@ -32,30 +30,28 @@ export interface ThemeColors {
 
 export const THEME_COLORS: Record<Theme, ThemeColors> = {
   midnight: {
-    bg: '#15131d',
-    surface: '#1f1c2b',
-    surfaceSecondary: '#242032',
-    surfaceElevated: '#282536',
-    text: '#ffffff',
-    textSecondary: '#9ca3af',
-    textMuted: '#9ca3af',
-    primary: '#6b5b8a',
-    primaryHover: '#7e6ca0',
-    accent: '#6b5b8a',
-    accentHover: '#7e6ca0',
-    danger: '#d27269',
-    success: '#5d9b84',
-    positive: '#5d9b84',
-    negative: '#d27269',
-    warning: '#c89b58',
-    border: '#2e2a3d',
-    borderStrong: '#3c374d',
-    brand: '#f0e4d3',
-    chartIncome: '#5d9b84',
-    chartExpense: '#d27269',
-    chartAccent: '#6b5b8a',
-    chartNeutral: '#9ca3af',
-    chartBorder: '#2e2a3d',
+    bg: '#0B0C0F',
+    surface: '#121419',
+    surfaceSecondary: '#181A21',
+    surfaceElevated: '#1E2028',
+    text: '#F2F1EE',
+    textSecondary: '#9A9BA3',
+    textMuted: '#666873',
+    accent: '#9B8AFB',
+    accentHover: '#6F61C0',
+    primary: '#5A5478',
+    primaryHover: '#6D6690',
+    positive: '#5D9B76',
+    negative: '#C66A72',
+    warning: '#C89B58',
+    border: '#292C34',
+    borderStrong: '#3A3E48',
+    brand: '#F5F2EB',
+    chartIncome: '#5D9B76',
+    chartExpense: '#C66A72',
+    chartAccent: '#9B8AFB',
+    chartNeutral: '#666873',
+    chartBorder: '#292C34',
   },
   neon: {
     bg: '#F8F9FA',
@@ -65,12 +61,10 @@ export const THEME_COLORS: Record<Theme, ThemeColors> = {
     text: '#111827',
     textSecondary: '#4B5563',
     textMuted: '#9CA3AF',
-    primary: '#7C3AED',
-    primaryHover: '#6D28D9',
     accent: '#7C3AED',
     accentHover: '#5B21B6',
-    danger: '#DC2626',
-    success: '#059669',
+    primary: '#7C3AED',
+    primaryHover: '#6D28D9',
     positive: '#059669',
     negative: '#DC2626',
     warning: '#D97706',

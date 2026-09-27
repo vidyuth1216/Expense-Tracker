@@ -3,6 +3,7 @@ import { createExpense, deleteExpense, getExpense, listExpenses, updateExpense }
 import { createIncome, deleteIncome, getIncome, listIncome, updateIncome } from '../controllers/incomeController.js'
 import { getHealth } from '../controllers/healthController.js'
 import { getDashboard } from '../controllers/dashboardController.js'
+import { getAnalytics } from '../controllers/analyticsController.js'
 import { login, logout, me, register } from '../controllers/authController.js'
 import { requireAuthentication } from '../middleware/auth.js'
 import { createCategory, deleteCategory, listCategories } from '../controllers/categoryController.js'
@@ -16,6 +17,7 @@ apiRouter.post('/auth/login', login)
 apiRouter.post('/auth/logout', logout)
 apiRouter.get('/auth/me', requireAuthentication, me)
 apiRouter.get('/dashboard', requireAuthentication, getDashboard)
+apiRouter.get('/analytics', requireAuthentication, getAnalytics)
 apiRouter.get('/categories', requireAuthentication, listCategories)
 apiRouter.post('/categories', requireAuthentication, createCategory)
 apiRouter.delete('/categories/:id', requireAuthentication, deleteCategory)

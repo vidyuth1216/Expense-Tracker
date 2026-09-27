@@ -16,8 +16,8 @@ export function StatCard({ label, value, change, positive = true }: StatCardProp
         <span
           className={`flex h-6 w-6 items-center justify-center rounded-md border ${
             positive
-              ? 'border-[var(--color-success)]/30 bg-[var(--color-success)]/15 text-[var(--color-success)]'
-              : 'border-[var(--color-danger)]/30 bg-[var(--color-danger)]/15 text-[var(--color-danger)]'
+              ? 'border-[var(--color-positive)]/25 bg-[var(--color-positive)]/15 text-[var(--color-positive)]'
+              : 'border-[var(--color-negative)]/25 bg-[var(--color-negative)]/15 text-[var(--color-negative)]'
           }`}
           aria-hidden="true"
         >
@@ -30,7 +30,7 @@ export function StatCard({ label, value, change, positive = true }: StatCardProp
       <p className="mt-2 text-xs text-[var(--color-text-muted)]">
         <span
           className={`font-semibold ${
-            positive ? 'text-[var(--color-success)]' : 'text-[var(--color-danger)]'
+            positive ? 'text-[var(--color-positive)]' : 'text-[var(--color-negative)]'
           }`}
         >
           {change}

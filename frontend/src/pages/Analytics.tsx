@@ -51,12 +51,12 @@ export function Analytics() {
   }, [retryToken])
 
   const categoryColors = [
-    '#5d9b84',
-    '#6b5b8a',
-    '#d27269',
-    '#7e6ca0',
-    '#4a5568',
-    '#c89b58',
+    colors.positive,
+    colors.accent,
+    colors.warning,
+    colors.negative,
+    colors.accentHover,
+    colors.chartNeutral,
   ]
 
   const tooltipStyle = {
@@ -203,8 +203,8 @@ export function Analytics() {
                     })
                   }
                 />
-                <Bar dataKey="income" fill="var(--color-success)" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="expenses" fill="var(--color-danger)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="income" fill={colors.positive} radius={[4, 4, 0, 0]} />
+                <Bar dataKey="expenses" fill={colors.negative} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -216,7 +216,7 @@ export function Analytics() {
               <span
                 aria-hidden="true"
                 className="h-2 w-2 rounded-full"
-                style={{ backgroundColor: 'var(--color-success)' }}
+                style={{ backgroundColor: colors.positive }}
               />
               Income
             </span>
@@ -224,7 +224,7 @@ export function Analytics() {
               <span
                 aria-hidden="true"
                 className="h-2 w-2 rounded-full"
-                style={{ backgroundColor: 'var(--color-danger)' }}
+                style={{ backgroundColor: colors.negative }}
               />
               Expenses
             </span>
@@ -343,7 +343,7 @@ export function Analytics() {
                   contentStyle={tooltipStyle}
                   formatter={(value) => [formatINR(Number(value)), 'Savings']}
                 />
-                <Bar dataKey="savings" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="savings" fill={colors.accent} radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -391,10 +391,10 @@ export function Analytics() {
                 <Area
                   dataKey="expenses"
                   type="monotone"
-                  stroke="var(--color-primary)"
+                  stroke={colors.accent}
                   strokeWidth={2}
-                  fill="var(--color-primary)"
-                  fillOpacity={0.25}
+                  fill={colors.accent}
+                  fillOpacity={0.16}
                 />
               </AreaChart>
             </ResponsiveContainer>

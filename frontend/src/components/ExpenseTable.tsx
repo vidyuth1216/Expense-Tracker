@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { formatINR, type Expense, type ExpenseInput } from '../types/finance'
 import { ExpenseForm } from './ExpenseForm'
 import { Icon } from './Icon'
-import { CategoryBadge } from './CategoryBadge'
 
 type ExpenseTableProps = {
   expenses: Expense[]
@@ -89,7 +88,9 @@ export function ExpenseTable({
                 {expense.description || 'Untitled expense'}
               </td>
               <td className="whitespace-nowrap px-4 py-3.5">
-                <CategoryBadge category={expense.category} />
+                <span className="inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-2.5 py-0.5 text-[11px] font-medium text-[var(--color-text-secondary)]">
+                  {expense.category}
+                </span>
               </td>
               <td className="whitespace-nowrap px-4 py-3.5 text-xs text-[var(--color-text-muted)]">
                 {expense.paymentMethod}

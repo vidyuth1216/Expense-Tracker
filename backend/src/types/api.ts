@@ -75,6 +75,28 @@ export type DashboardResponse = {
   sixMonthHistory: DashboardMonthlySpending[]
 }
 
+export type AnalyticsMonthlyTotals = {
+  month: string
+  income: number
+  expenses: number
+  savings: number
+}
+
+export type AnalyticsCategorySpending = {
+  category: string
+  amount: number
+  percentage: number
+}
+
+export type AnalyticsResponse = {
+  monthlyTotals: AnalyticsMonthlyTotals[]
+  categoryBreakdown: AnalyticsCategorySpending[]
+  totalSpending: number
+  averageMonthlySpending: number
+  averageDailySpending: number
+  highestSpendingCategory: AnalyticsCategorySpending | null
+}
+
 export type CategoryInput = {
   name: string
 }

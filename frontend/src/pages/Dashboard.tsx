@@ -11,7 +11,7 @@ import { getDashboardData } from '../services/dashboardService'
 import { formatINR, type DashboardData } from '../types/finance'
 import { useAuth } from '../context/AuthContext'
 
-const chartColors = ['#5d9b84', '#6b5b8a', '#d27269', '#7e6ca0', '#4a5568', '#c89b58']
+const chartColors = ['#5D9B76', '#9B8AFB', '#C89B58', '#C66A72', '#6F61C0', '#4B5563']
 const currentMonth = new Date().toISOString().slice(0, 7)
 
 function monthLabel(
