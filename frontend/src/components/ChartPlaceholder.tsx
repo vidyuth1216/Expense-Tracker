@@ -51,7 +51,7 @@ export function ChartPlaceholder({ type, data, total = 0 }: ChartPlaceholderProp
             <Tooltip
               content={
                 <ChartTooltip
-                  valueFormatter={(value) => `${value}%`}
+                  valueFormatter={(value: any) => `${value}%`}
                 />
               }
               wrapperStyle={{ outline: 'none' }}
@@ -96,7 +96,7 @@ export function ChartPlaceholder({ type, data, total = 0 }: ChartPlaceholderProp
           <Tooltip
             content={
               <ChartTooltip
-                valueFormatter={(value) => formatINR(Number(value))}
+                valueFormatter={(value: any) => formatINR(Number(value))}
               />
             }
             cursor={{ fill: colors.border, opacity: 0.15 }}
