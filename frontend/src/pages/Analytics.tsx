@@ -191,8 +191,8 @@ export function Analytics() {
                   width={68}
                 />
                 <Tooltip
+                  cursor={{ fill: 'rgba(255, 255, 255, 0.04)' }}
                   contentStyle={tooltipStyle}
-                  cursor={{ fill: '#282536' }}
                   formatter={(value, name) => [
                     formatINR(Number(value)),
                     String(name).charAt(0).toUpperCase() + String(name).slice(1),
@@ -269,6 +269,7 @@ export function Analytics() {
                       ))}
                     </Pie>
                     <Tooltip
+                      cursor={false}
                       contentStyle={tooltipStyle}
                       formatter={(value) => [formatINR(Number(value)), 'Spent']}
                     />
@@ -341,8 +342,8 @@ export function Analytics() {
                   width={68}
                 />
                 <Tooltip
+                  cursor={{ fill: 'rgba(255, 255, 255, 0.04)' }}
                   contentStyle={tooltipStyle}
-                  cursor={{ fill: '#282536' }}
                   formatter={(value) => [formatINR(Number(value)), 'Savings']}
                 />
                 <Bar dataKey="savings" fill={colors.accent} radius={[4, 4, 0, 0]} />
@@ -387,6 +388,7 @@ export function Analytics() {
                   width={68}
                 />
                 <Tooltip
+                  cursor={{ fill: 'rgba(255, 255, 255, 0.04)' }}
                   contentStyle={tooltipStyle}
                   formatter={(value) => [formatINR(Number(value)), 'Spent']}
                 />

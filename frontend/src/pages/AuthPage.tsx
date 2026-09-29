@@ -49,8 +49,8 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
         <Card className="border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-2xl backdrop-blur-sm sm:p-8">
           {/* Brand Wordmark */}
           <div className="mb-6 text-center">
-            <div className="brand-wordmark text-4xl font-serif text-[var(--color-brand)] select-none">
-              everyday.
+          <div className="brand-wordmark text-4xl font-serif italic text-[var(--color-brand)] select-none">
+            everyday<span style={{ color: 'var(--color-primary)' }}>.</span>
             </div>
             <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
               Private Wealth Management
